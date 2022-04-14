@@ -1,9 +1,7 @@
 var http = require('http');
-var formidable = require('formidable');
 var fs = require('fs');
 var events = require('events');
-var eventEmitter = new events.EventEmitter();
-
+var url = require('url');
 
 //Create an event handler:
 var myEventHandler = function () {
