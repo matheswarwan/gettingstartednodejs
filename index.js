@@ -3,7 +3,6 @@ var formidable = require('formidable');
 var fs = require('fs');
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
-var nodemailer = require('nodemailer');
 
 
 //Create an event handler:
@@ -34,3 +33,5 @@ http.createServer(function (req, res) {
     return res.end();
   }
 }).listen(8080);
+
+console.log('listening on 8080')
