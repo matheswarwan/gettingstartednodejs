@@ -12,26 +12,18 @@ var myEventHandler = function () {
 
 
 http.createServer(function (req, res) {
-  if (req.url == '/fileupload') {
-    var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
-      var oldpath = files.filetoupload.filepath;
-      var newpath = __dirname + '/filesUploaded/' + files.filetoupload.originalFilename;
-      console.log('file saved in ' + newpath)
-      fs.rename(oldpath, newpath, function (err) {
-        if (err) throw err;
-        res.write('File uploaded and moved!');
-        res.end();
-      });
- });
-  } else {
+  var q = url.parse(req.url, true);
+  var filename = "." + q.pathname;
+  console.log('file requested - ' + filename)
+  fs.readFile(filename, function(err, data) {
+    if (err) {
+      res.writeHead(404, {'Content-Type': 'text/html'});
+      return res.end("404 Not Found. Try with /execute or /save");
+    } 
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
-    res.write('<input type="file" name="filetoupload"><br>');
-    res.write('<input type="submit">');
-    res.write('</form>');
+    res.write(data);
     return res.end();
-  }
+  });
 }).listen(process.env.PORT || 8080);
 
 console.log('listening on 8080 OR ' + process.env.PORT )
