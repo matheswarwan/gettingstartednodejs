@@ -2,6 +2,26 @@ var http = require('http');
 var fs = require('fs');
 var events = require('events');
 var url = require('url');
+/*var mjml2html = require('mjml')
+
+exports.mjmlFunction = function(mjmlText) {
+  return mjml2html(mjmlText, {})
+}
+
+var helloWorld = `<mjml>
+<mj-body>
+  <mj-section>
+    <mj-column>
+      <mj-divider border-color="#F45E43"></mj-divider>
+      <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello World</mj-text>
+    </mj-column>
+  </mj-section>
+</mj-body>
+</mjml>`
+var mjmlResponse = mjml2html(helloWorld, {});
+console.log(mjmlResponse['html']);
+
+//mjmlModule(x) */
 
 //Create an event handler:
 var myEventHandler = function () {
